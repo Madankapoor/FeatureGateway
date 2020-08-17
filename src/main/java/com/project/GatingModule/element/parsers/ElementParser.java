@@ -1,6 +1,7 @@
-package com.project.GatingModule.parsers;
+package com.project.GatingModule.element.parsers;
 
 import com.project.GatingModule.exceptions.InvalidTokenException;
+import com.project.GatingModule.element.Element;
 
 import java.util.List;
 

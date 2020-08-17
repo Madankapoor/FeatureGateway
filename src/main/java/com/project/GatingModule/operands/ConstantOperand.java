@@ -10,7 +10,7 @@ public class ConstantOperand<T>  implements Operand {
     }
 
     @Override
-    public Object getValue() {
+    public T getValue() {
         return value;
     }
 

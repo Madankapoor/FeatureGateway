@@ -8,7 +8,7 @@ public class SeparatorClassifier implements ElementClassifier {
     @Override
     public ElementType classify(String token) {
         for (Separators s : Separators.values()) {
-            if(s.equals(token)) {
+            if(s.toString().equals(token)) {
                return ElementType.SEPARATOR;
             }
         }

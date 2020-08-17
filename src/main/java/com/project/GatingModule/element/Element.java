@@ -1,4 +1,4 @@
-package com.project.GatingModule.parsers;
+package com.project.GatingModule.element;
 
 import com.project.GatingModule.enums.ElementType;
 
@@ -17,5 +17,13 @@ public class Element {
 
     public ElementType getType() {
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return "Element{" +
+                "value='" + value + '\'' +
+                ", type=" + type +
+                '}';
     }
 }

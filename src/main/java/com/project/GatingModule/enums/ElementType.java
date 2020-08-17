@@ -16,9 +16,9 @@ public enum ElementType {
             return "INTEGER_CONSTANT";
         }
     },
-    OPERAND {
+    USER_LOOKUP {
         public String toString() {
-            return "OPERAND";
+            return "USER_LOOKUP";
         }
     },
     OPERATOR {
@@ -31,9 +31,10 @@ public enum ElementType {
             return "SEPARATOR";
         }
     },
+    BOOLEAN_CONSTANT {
+        public String toString() { return "BOOLEAN_CONSTANT";}
+    },
     UNKNOWN {
-        public String toString() {
-            return "UNKNOWN";
-        }
+        public String toString() { return "UNKNOWN"; }
     };
 }

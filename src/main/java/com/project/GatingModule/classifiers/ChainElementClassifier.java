@@ -1,7 +1,7 @@
 package com.project.GatingModule.classifiers;
 
 import com.project.GatingModule.enums.ElementType;
-import com.project.GatingModule.OperatorRepository;
+import com.project.GatingModule.operators.OperatorRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +16,13 @@ public class ChainElementClassifier implements ElementClassifier {
         elementClassifiers.add(new StringConstantClassifier());
         elementClassifiers.add(new IntegerConstantClassifier());
         elementClassifiers.add(new DoubleConstantClassifier());
+        elementClassifiers.add(new BooleanConstantClassifier());
+        elementClassifiers.add(new OperandClassifier());
     }
 
     public ElementType classify(String token) {
-        ElementType type = ElementType.UNKNOWN;
         for(ElementClassifier elementClassifier : elementClassifiers){
-            type = elementClassifier.classify(token);
+            ElementType type = elementClassifier.classify(token);
             if(type != ElementType.UNKNOWN)
                 return type;
         }
