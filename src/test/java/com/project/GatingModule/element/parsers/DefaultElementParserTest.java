@@ -6,6 +6,7 @@ import com.project.GatingModule.enums.ElementType;
 import com.project.GatingModule.exceptions.InvalidTokenException;
 import com.project.GatingModule.operators.OperatorRepository;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -13,17 +14,19 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class DefaultElementParserTest {
+    ElementParser elementParser;
+
+    @Before
+    public void setup(){
+        elementParser = new DefaultElementParser(new OperatorRepository());
+    }
+
     @Test
     public void testValidExpressionsParsing() throws InvalidTokenException {
-        OperatorRepository operatorRepository = new OperatorRepository();
-        ChainElementClassifier chainElementClassifier = new ChainElementClassifier(operatorRepository);
-        ElementParser elementParser = new DefaultElementParser(chainElementClassifier);
-
-
         String[] expressions = new String[]{
-                " Age < 100",
-                " (Age < 18) && (Address.city == \"Bangalore\" )",
-                "(Age "
+                "Age<100",
+                "(Age<18) && (Address.city==\"Bangalore\")",
+                "(Age>18) && (Address.city==\"Chennai\") || ( score < 100 )"
         };
 
         List<Element> elements0 = elementParser.parseElements(expressions[0]);
@@ -43,5 +46,8 @@ public class DefaultElementParserTest {
         Assert.assertEquals(ElementType.OPERATOR,elements1.get(8).getType());
         Assert.assertEquals(ElementType.STRING_CONSTANT,elements1.get(9).getType());
         Assert.assertEquals(ElementType.SEPARATOR,elements1.get(10).getType());
+
+        List<Element> elements2 = elementParser.parseElements(expressions[2]);
+        System.out.println(elements2.toString());
     }
 }

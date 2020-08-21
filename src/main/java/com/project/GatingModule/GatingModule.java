@@ -23,10 +23,8 @@ public class GatingModule {
     public GatingModule(){
         // Dependency Injection
         operatorRepository = new OperatorRepository();
-        // Element Classifier
-        chainElementClassifier = new ChainElementClassifier(operatorRepository);
         // Element Parser
-        elementParser = new DefaultElementParser(chainElementClassifier);
+        elementParser = new DefaultElementParser(operatorRepository);
         // Infix to postfix converter
         convertInfixToPostfix = new ConvertInfixToPostfix(operatorRepository);
     }

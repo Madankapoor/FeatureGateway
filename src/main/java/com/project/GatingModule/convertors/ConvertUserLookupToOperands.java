@@ -28,7 +28,7 @@ public class ConvertUserLookupToOperands {
                     }
                     substitutedElements.add(new Element(value.toString(),type));
                 }
-                throw new UserPropertyNotFoundException(element.getValue());
+                else throw new UserPropertyNotFoundException(element.getValue());
             }
             else substitutedElements.add(element);
         }
