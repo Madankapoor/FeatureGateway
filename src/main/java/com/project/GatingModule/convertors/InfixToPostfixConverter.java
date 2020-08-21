@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class ConvertInfixToPostfix {
+public class InfixToPostfixConverter {
     private OperatorRepository operatorRepository;
-    public ConvertInfixToPostfix(OperatorRepository operatorRepository){
+    public InfixToPostfixConverter(OperatorRepository operatorRepository){
         this.operatorRepository = operatorRepository;
     }
     public List<Element> generatePostFixGeneration(List<Element> elements) throws InvalidOperatorSymbolException {

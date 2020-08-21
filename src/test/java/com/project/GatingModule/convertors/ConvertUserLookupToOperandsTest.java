@@ -4,7 +4,6 @@ import com.project.GatingModule.element.Element;
 import com.project.GatingModule.enums.ElementType;
 import com.project.GatingModule.exceptions.UserPropertyNotFoundException;
 import com.project.GatingModule.exceptions.UserPropertyNotPrimitiveTypeException;
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -20,7 +19,7 @@ public class ConvertUserLookupToOperandsTest {
         userMap.put("Age",20);
         userMap.put("Address.street","Gandhi Street");
         userMap.put("Address.no",37);
-        ConvertUserLookupToOperands convertor = new ConvertUserLookupToOperands(userMap);
+        UserLookupToOperandsConverter convertor = new UserLookupToOperandsConverter(userMap);
 
         List<Element> elements = new ArrayList<>();
         elements.add(new Element("Age", ElementType.USER_LOOKUP));

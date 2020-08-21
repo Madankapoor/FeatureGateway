@@ -20,4 +20,8 @@ public class ConstantOperandFactory {
         }
         throw new InvalidTokenException(element.getValue());
     }
+
+    public static Boolean getBooleanValue(Element element){
+        return Boolean.parseBoolean(element.getValue());
+    }
 }

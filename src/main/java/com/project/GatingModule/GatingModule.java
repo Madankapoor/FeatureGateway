@@ -1,7 +1,7 @@
 package com.project.GatingModule;
 
 import com.project.GatingModule.classifiers.ChainElementClassifier;
-import com.project.GatingModule.convertors.ConvertInfixToPostfix;
+import com.project.GatingModule.convertors.InfixToPostfixConverter;
 import com.project.GatingModule.enums.ElementType;
 import com.project.GatingModule.exceptions.*;
 import com.project.GatingModule.operands.ConstantOperandFactory;
@@ -9,7 +9,7 @@ import com.project.GatingModule.operators.OperatorRepository;
 import com.project.GatingModule.element.Element;
 import com.project.GatingModule.element.parsers.ElementParser;
 import com.project.GatingModule.element.parsers.DefaultElementParser;
-import com.project.GatingModule.convertors.ConvertUserLookupToOperands;
+import com.project.GatingModule.convertors.UserLookupToOperandsConverter;
 import com.project.GatingModule.util.Helper;
 
 import java.util.*;
@@ -18,7 +18,7 @@ public class GatingModule {
     private OperatorRepository operatorRepository;
     private ChainElementClassifier chainElementClassifier;
     private ElementParser elementParser;
-    private ConvertInfixToPostfix convertInfixToPostfix;
+    private InfixToPostfixConverter infixToPostfixConverter;
 
     public GatingModule(){
         // Dependency Injection
@@ -26,17 +26,18 @@ public class GatingModule {
         // Element Parser
         elementParser = new DefaultElementParser(operatorRepository);
         // Infix to postfix converter
-        convertInfixToPostfix = new ConvertInfixToPostfix(operatorRepository);
+        infixToPostfixConverter = new InfixToPostfixConverter(operatorRepository);
     }
+
     public  Boolean IsAllowed(String infixConditionalExpression, HashMap<String,Object> user) {
         try {
-            ConvertUserLookupToOperands convertUserLookupToOperands = new ConvertUserLookupToOperands(user);
+            UserLookupToOperandsConverter userLookupToOperandsConverter = new UserLookupToOperandsConverter(user);
             // Parse All elements
             List<Element> elements = elementParser.parseElements(infixConditionalExpression);
             // Substitute User Vars. Convert all lookups to constants
-            elements = convertUserLookupToOperands.convertUserLookuptoConstantOperands(elements);
+            elements = userLookupToOperandsConverter.convertUserLookuptoConstantOperands(elements);
             // Convert to PostFix
-            elements = convertInfixToPostfix.generatePostFixGeneration(elements);
+            elements = infixToPostfixConverter.generatePostFixGeneration(elements);
             // Evaluate Expression
             return evaluatePostFixExpression(elements);
         }
@@ -78,6 +79,6 @@ public class GatingModule {
                     break;
             }
         }
-        return (Boolean) ConstantOperandFactory.getOperand(operandStack.peek()).getValue();
+        return ConstantOperandFactory.getBooleanValue(operandStack.peek());
     }
 }

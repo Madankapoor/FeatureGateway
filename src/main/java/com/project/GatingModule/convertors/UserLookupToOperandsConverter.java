@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ConvertUserLookupToOperands {
+public class UserLookupToOperandsConverter {
     private HashMap<String,Object> userProperties;
-    public ConvertUserLookupToOperands(HashMap<String,Object> userProperties){
+    public UserLookupToOperandsConverter(HashMap<String,Object> userProperties){
         this.userProperties = userProperties;
     }
     public List<Element> convertUserLookuptoConstantOperands(List<Element> elements) throws UserPropertyNotFoundException, UserPropertyNotPrimitiveTypeException {
