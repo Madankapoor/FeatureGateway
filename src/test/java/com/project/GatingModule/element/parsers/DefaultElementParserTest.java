@@ -25,8 +25,7 @@ public class DefaultElementParserTest {
     public void testValidExpressionsParsing() throws InvalidTokenException {
         String[] expressions = new String[]{
                 "Age<100",
-                "(Age<18) && (Address.city==\"Bangalore\")",
-                "(Age>18) && (Address.city==\"Chennai\") || ( score < 100 )"
+                "(Age<18) && (Address.city==\"Bangalore\")"
         };
 
         List<Element> elements0 = elementParser.parseElements(expressions[0]);
@@ -46,8 +45,5 @@ public class DefaultElementParserTest {
         Assert.assertEquals(ElementType.OPERATOR,elements1.get(8).getType());
         Assert.assertEquals(ElementType.STRING_CONSTANT,elements1.get(9).getType());
         Assert.assertEquals(ElementType.SEPARATOR,elements1.get(10).getType());
-
-        List<Element> elements2 = elementParser.parseElements(expressions[2]);
-        System.out.println(elements2.toString());
     }
 }

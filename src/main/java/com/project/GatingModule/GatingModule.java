@@ -51,9 +51,6 @@ public class GatingModule {
         for(Element element: postfix){
             switch (element.getType()){
                 case SEPARATOR:
-                    if(Helper.isOpenBracket(element)){
-                        operandStack.push(element);
-                    }
                     break;
                 case OPERATOR:
                     ArrayList<Element> operands = new ArrayList<>();

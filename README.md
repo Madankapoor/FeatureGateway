@@ -33,12 +33,6 @@ make each phase independent of another.
     
     Throw Errors:
         * EvaluationError 
-        
-
-### Class Diagram
-
-
-### Sequence Diagram
 
 
 

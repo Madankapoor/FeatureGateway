@@ -32,6 +32,15 @@ public class Helper {
         return type;
     }
 
+    public static Element getPrasedElement(Object value){
+        ElementType type = getObjectElementType(value);
+        String elementValue = value.toString();
+        if( type == ElementType.STRING_CONSTANT){
+            elementValue = "\"" + value.toString() + "\"";
+        }
+        return new Element(elementValue,type);
+    }
+
     public static boolean isOpenBracket(Element e){
         return e.getValue().equals(Separators.OPEN_ANGLE_BRACKET.toString());
     }

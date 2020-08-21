@@ -21,12 +21,12 @@ public class ConvertUserLookupToOperands {
             if(element.getType()== ElementType.USER_LOOKUP){
                 if(userProperties.containsKey(element.getValue())){
                     Object value = userProperties.get(element.getValue());
-                    ElementType type = Helper.getObjectElementType(value);
-                    if(type==ElementType.UNKNOWN)
+                    Element parsedElement = Helper.getPrasedElement(value);
+                    if(parsedElement.getType()==ElementType.UNKNOWN)
                     {
                         throw new UserPropertyNotPrimitiveTypeException(element.getValue());
                     }
-                    substitutedElements.add(new Element(value.toString(),type));
+                    substitutedElements.add(parsedElement);
                 }
                 else throw new UserPropertyNotFoundException(element.getValue());
             }
